@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'We are start check our repo'
+                git changelog: false, poll: false, url: 'https://github.com/ALOHADANCE-dev/devops-trainee.git'
+                echo 'We are already end, go next'
+            }
+        }
+        stage('Build'){
+            steps{
+                echo 'We are try to build your image'
+                echo 'Im think allright'
+            }
+        }
+        stage('Push to docker'){
+            steps{
+                echo 'We are try deploy image to docker-hub'
+                echo 'Complete! Lets goo!'
+            }
+        }
+        stage('Deploy to k8s'){
+            steps{
+                echo 'Awesome! We are already try deploy app to kubernetes'
+                echo 'Nice!'
+            }
+        }
+    }
+}
