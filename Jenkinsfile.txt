@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'We are start check our repo'
-                git changelog: false, poll: false, url: 'https://github.com/ALOHADANCE-dev/devops-trainee.git'
+                git 'https://github.com/ALOHADANCE-dev/devops-trainee.git'
                 echo 'We are already end, go next'
             }
         }
