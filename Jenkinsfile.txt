@@ -12,12 +12,20 @@ pipeline {
         stage('Build'){
             steps{
                 echo 'We are try to build your image'
+                script{
+                    docker.build("yggdora/devops_trainee:latest")
+                }
                 echo 'Im think allright'
             }
         }
         stage('Push to docker'){
             steps{
                 echo 'We are try deploy image to docker-hub'
+                script{
+                    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_PASSWORD'){
+                        docker.image("yggdora/devops_trainee").push()
+                    }
+                }
                 echo 'Complete! Lets goo!'
             }
         }
