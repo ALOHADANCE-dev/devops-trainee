@@ -1,5 +1,5 @@
 FROM php:7.4-apache
 
-COPY hellp.php /var/www/html/
+COPY hello.php /var/www/html/
 
 EXPOSE 80
