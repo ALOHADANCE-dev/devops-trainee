@@ -22,8 +22,10 @@ pipeline {
             steps{
                 echo 'We are try deploy image to docker-hub'
                 script{
-                    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_PASSWORD'){
-                        docker.image("yggdora/devops_trainee").push()
+                    withCredentials([[$class: 'VaultSecret', path: 'secret/data/myapp/docker', secretKey: 'DOCKER_PASSWORD']]) {
+                        docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_USERNAME', DOCKER_PASSWORD){
+                            docker.image("yggdora/devops_trainee").push()
+                        }
                     }
                 }
                 echo 'Complete! Lets goo!'
